@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
 import pg from "pg";
+import "dotenv/config";
 
 const app = express();
 const port = 3000;
@@ -12,9 +13,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 const db = new pg.Client({
     host: "localhost",
-    database: process.env.db,
-    user: process.env.db_user,
-    password: process.env.db_password,
+    database: process.env.DB,
+    user: process.env.DB_user,
+    password: process.env.DB_password,
     port: "5432"
 });
 db.connect();

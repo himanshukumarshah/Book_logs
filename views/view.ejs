@@ -1,0 +1,24 @@
+<%- include("partials/header.ejs") %>
+
+<div class="view" >
+    <form class="card_options" action="/book" method="POST" >
+        <input type="hidden" name="bookID" value="<%= locals.book.book_id %>"/>
+        <button name="action" value="edit"><ion-icon name="create-outline"></ion-icon></button>
+        <button name="action" value="delete"><ion-icon name="trash-outline"></ion-icon></button>
+    </form>
+
+    <div class="view-book">
+        <img src="<%= locals.book.cover_url %>" alt="book cover" />
+        <div class="book_details">
+            <h3 class="book_title"><%= locals.book.book_title %></h3>
+            <p style="font-weight: bold;">Date Read: <%= new Date(locals.book.read_date).toLocaleDateString('en-CA') %></p>
+            <p style="font-weight: bold;">Rating: <%= locals.book.rating %>/10</p>
+            <p class="book_shortDetail"><span style="font-weight: bold;">Description:</span><br/> <%= locals.book.short_detail %></p>
+            <p style="font-weight: bold;">Notes: </p>
+            <p><%= locals.book.notes %></p>
+        </div>
+    </div>
+
+</div>
+
+<%- include("partials/footer.ejs") %>

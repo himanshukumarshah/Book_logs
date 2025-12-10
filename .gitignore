@@ -1,0 +1,17 @@
+# Dependencies (never upload these, they are huge)
+node_modules/
+venv/
+__pycache__/
+
+# Sensitive Environment Variables (CRITICAL)
+.env
+.env.local
+.env.production
+
+# Build outputs (optional, usually generated automatically)
+dist/
+build/
+
+# System files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,44 @@
+<%- include("partials/header.ejs") %>
+
+<main>
+    <div class="options">
+        <a href="/new_book"><button>Add Book</button></a>
+
+        <form id="sortBooks" method="POST" action="/sort">
+            <label for="sortby">Sort By:</label>
+            <select name="sortby" id="sortby" onchange="this.form.submit()">
+                <option value="book_title">Title</option>
+                <option value="rating" selected>Rating</option>
+                <option value="read_date">Newest</option>
+            </select>
+        </form>
+
+    </div>
+
+    <div class="books_cards">
+        <% books.forEach(book => { %>
+            <div class="book_card">
+                <form class="card_options" action="/book" method="POST" >
+                    <input type="hidden" name="bookID" value="<%= book.book_id %>"/>
+                    <button name="action" value="edit"><ion-icon name="create-outline"></ion-icon></button>
+                    <button name="action" value="delete"><ion-icon name="trash-outline"></ion-icon></button>
+                </form>
+
+                <a href="/view/<%= book.book_id %>">
+                    <img src="<%= book.cover_url %>" alt="book cover" />
+                </a>
+
+                <div class="book_details">
+                    <a href="/view/<%= book.book_id %>">
+                        <h3 class="book_title"><%= book.book_title %></h3>
+                    </a>
+                    <p>Date Read: <%= new Date(book.read_date).toLocaleDateString('en-CA') %></p>
+                    <p>Rating: <%= book.rating %>/10</p>
+                    <p class="book_shortDetail"><%= book.short_detail %></p>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</main>
+
+<%- include("partials/footer.ejs") %>

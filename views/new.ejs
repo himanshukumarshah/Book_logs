@@ -1,0 +1,37 @@
+<%- include("partials/header.ejs") %>
+
+<div class="newBook">
+    <% if(locals.editBook ){ %>
+        <form action="/update" method="POST">
+            <input type="hidden" name="bookID" value="<%= locals.editBook.book_id %>" >
+            <h2 class="book_title" ><%= locals.editBook.book_title %></h2><br/>
+            <label for="rating">Rating: </label>
+            <input type="number" name="rating" min="1" max="10" placeholder="upto 10" autocomplete="off" value="<%= locals.editBook.rating %>" required><br/>
+            <label for="date">Date Read: </label>
+            <input type="date" name="date" value="<%= new Date(locals.editBook.read_date).toISOString().substring(0, 10) %>" required><br/>
+            <label for="description">Description: </label>
+            <textarea name="description" rows="3" cols="90" ><%= locals.editBook.short_detail %></textarea><br/>
+            <label for="notes">Notes: </label>
+            <textarea name="notes" rows="20" cols="90" ><%= locals.editBook.notes %></textarea><br/>
+
+            <input type="submit" value="Update" />
+        </form>
+    <% } else { %>
+        <form action="/new" method="POST">
+            <label for="title">Title: </label>
+            <input type="text" name="title" placeholder="Enter title cautiously" autofocus autocomplete="off"/><br/>
+            <label for="rating">Rating: </label>
+            <input type="number" name="rating" min="1" max="10" placeholder="upto 10" autocomplete="off" required><br/>
+            <label for="date">Date Read: </label>
+            <input type="date" name="date" placeholder="YYYY-MM-DD" required> <br/>
+            <label for="description">Description: </label>
+            <textarea name="description" rows="3" cols="90" autocomplete="off"></textarea><br/>
+            <label for="notes">Notes: </label>
+            <textarea name="notes" rows="20" cols="90"></textarea><br/>
+
+            <input type="submit" value="Save" />
+        </form>
+    <% } %>
+</div>
+
+<%- include("partials/footer.ejs") %>

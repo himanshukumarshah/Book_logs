@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({extended: true}));
 
 const db = new pg.Client({
-    host: "localhost",
+    host: process.env.DB_HOST,
     database: process.env.DB,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
